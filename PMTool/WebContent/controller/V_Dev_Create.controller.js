@@ -1,7 +1,7 @@
 sap.ui.define(["sap/ui/core/mvc/Controller",
 		"sap/ui/core/routing/History",
 		"sap/m/MessageToast",
-		"sap/ui/core/ValueState",
+		"sap/ui/core/ValueState"
 		"sap/m/MessageBox"
 		
 	],

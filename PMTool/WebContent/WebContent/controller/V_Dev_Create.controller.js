@@ -117,22 +117,27 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					oEntry.ZdeveloperName = this.getView().byId("idDevName").getValue();
 					oEntry.Zactive        = this.getView().byId("idDevActive").getSelected();
 				
-				
+				    var self = this;
 					oModel.create("/DevMasterSet", oEntry, {
 						method: "POST",
 						success: function(data) {
 							// dialog.close();
-							MessageBox.success("Record has been succesfully created");
-							var oHistory = History.getInstance();
-							var sPreviousHash = oHistory.getPreviousHash();
-							if (sPreviousHash !== undefined) {
-								window.history.go(-1);
-							} // If you do not find a correct Hash, go to the Source screen using default router;
-							else {
-								var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-								oRouter.navTo("", true);
-							}
-						},
+							MessageBox.success("Record has been succesfully created",{
+						// 	var oHistory = History.getInstance();
+						// 	var sPreviousHash = oHistory.getPreviousHash();
+						// 	if (sPreviousHash !== undefined) {
+						// 		window.history.go(-1);
+						// 	} // If you do not find a correct Hash, go to the Source screen using default router;
+						// 	else {
+						// 		var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+						// 		oRouter.navTo("", true);
+						// 	}
+						// },
+						onClose:function(oAction){
+							self.fGoToDevDisplay(); }
+								
+						});
+},
 						error: function(e) {
 							// dialog.close();
 							MessageBox.error("Entry already exist");

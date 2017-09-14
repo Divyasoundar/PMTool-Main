@@ -1,8 +1,9 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/core/routing/History",
-	"sap/m/MessageToast"
-], function(Controller, History, MessageToast) {
+	"sap/m/MessageToast",
+	"sap/m/MessageBox"
+], function(Controller, History, MessageToast, MessageBox) {
 	"use strict";
 
 	return Controller.extend("PMTool.controller.V_Dev_Copy", {
@@ -73,7 +74,7 @@ sap.ui.define([
 			if(oEntry.Zdeveloper === "")
              {
              dialog.close();	
-              MessageToast.show("Please enter Developer ID");
+               MessageBox.error("Please enter Developer ID");
              }
              else
              {
@@ -94,7 +95,7 @@ sap.ui.define([
 				method: "POST",
 				success: function(data) {
 					dialog.close();
-					MessageToast.show("Record has been saved");
+					MessageBox.success("Record has been saved");
 					var oHistory = History.getInstance();
 			var sPreviousHash = oHistory.getPreviousHash();
 			// Go one screen back if you find a Hash
@@ -109,7 +110,7 @@ sap.ui.define([
 				},
 					error: function(e) {
 					dialog.close();
-                    MessageToast.show("Entry already exist");
+                    MessageBox.success("Entry already exist");
                     }
 				});
              }
